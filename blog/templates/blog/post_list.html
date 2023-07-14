@@ -5,7 +5,7 @@
     <title>Blog</title>
         <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
 
-    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/825bbb61c5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -93,7 +93,25 @@
                     {% endif %}
                     <div class="card-body">
                         <h2 class="card-title">{{ p.title}}</h2>
+                        {% if p.hook_text %}
+                            <h5 class="text-muted">{{ p.hook_text }}</h5>
+                        {% endif %}
                         <p class="card-text">{{ p.content }}</p>
+                        {% if p.file_upload%}
+                        <a href="{{p.file_upload_url}}" class="btn btn-outline-dark" role="button download">Download</a>
+                            {% if p.get_file_ext == 'csv'%}
+                                <i class="fa-solid fa-file-csv"></i>
+                            {% elif p.get_file_ext == 'xlsx'%}
+                                <i class="fa-solid fa-file-"></i>
+                            {% else %}
+                                <i class="fa-solid fa-file"></i>
+                            {% endif %}
+                        {% endif %}
+                        
+                      
+
+
+                        {{p.get_file_name}}
                         <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
