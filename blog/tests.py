@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Category
 
 
 class TestView(TestCase):
@@ -9,6 +9,9 @@ class TestView(TestCase):
         self.client = Client()
         self.user_tony = User.objects.create_user(username='tony', password='wltjd6230')
         self.user_pepper = User.objects.create_user(username='pepper', password='wltjd6230')
+
+        self.category_programming = Category.objects.create(name='programming', slug='programming')
+        self.category_music = Category.objects.create(name='music', slug='music')
 
 
     def test_post_list(self):
