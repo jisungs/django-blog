@@ -1,11 +1,15 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
+from django.contrib.auth.models import User
 from .models import Post
 
 
 class TestView(TestCase):
     def setUp(self):
         self.client = Client()
+        self.user_tony = User.objects.create_user(username='tony', password='wltjd6230')
+        self.user_pepper = User.objects.create_user(username='pepper', password='wltjd6230')
+
 
     def test_post_list(self):
         response = self.client.get('/blog/')
@@ -27,11 +31,13 @@ class TestView(TestCase):
         post_001 = Post.objects.create(
             title='첫번째 포스트입니다.',
             content='Hello World. We are the world.',
+            author=self.user_tony
         )
 
         post_002 = Post.objects.create(
             title='두번째 포스트입니다.',
             content='1등이 전부는 아니잖아요?',
+            author = self.user_pepper,
         )
 
         self.assertEqual(Post.objects.count(), 2)
