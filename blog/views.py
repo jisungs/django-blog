@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.text import slugify
 from django.core.exceptions import PermissionDenied
-
+from .forms import PostForm
 # Create your views here.
 
 class PostList(ListView):
@@ -29,7 +29,9 @@ class PostDetail(DetailView):
     
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
-    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
+    # fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
+    form_class = PostForm
+
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
