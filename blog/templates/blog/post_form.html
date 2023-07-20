@@ -1,5 +1,4 @@
 {% extends 'blog/base_full_width.html' %}
-{% load crispy_forms_tags %}
 
 {% block head_title %}Create POST - Blog {% endblock %}
 
@@ -20,7 +19,9 @@
     <br/>
 
     <button type="submit" class="btn btn-primary float-right">Submit</button>
+
 </form>
+{{form.media}}
 
 
 
