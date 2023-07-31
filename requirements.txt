@@ -14,12 +14,14 @@ django-allauth==0.54.0
 django-extensions==3.2.3
 django-markdownx==4.0.2
 executing==1.2.0
+gunicorn==21.2.0
 idna==3.4
 ipython==8.14.0
 jedi==0.18.2
 Markdown==3.4.3
 matplotlib-inline==0.1.6
 oauthlib==3.2.2
+packaging==23.1
 parso==0.8.3
 pexpect==4.8.0
 pickleshare==0.7.5
